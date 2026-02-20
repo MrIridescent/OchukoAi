@@ -14,11 +14,15 @@ logger = logging.getLogger(__name__)
 
 
 class ReasoningMode(Enum):
-    """Types of reasoning"""
+    """Types of reasoning - exponentially extended from 4 to 8 modes"""
     RATIONAL = "rational"
     RELATIONAL = "relational"
     SUBJECTIVE = "subjective"
     OBJECTIVE = "objective"
+    SYSTEMS = "systems"
+    CREATIVE = "creative"
+    CONSEQUENTIALIST = "consequentialist"
+    DIALECTICAL = "dialectical"
     INTEGRATED = "integrated"
 
 
@@ -37,17 +41,22 @@ class ReasoningPerspective:
 
 @dataclass
 class IntegratedReasoning:
-    """Multiple perspectives integrated"""
+    """Multiple perspectives integrated - all 8 reasoning modes"""
     topic: str
     rational_perspective: ReasoningPerspective
     relational_perspective: ReasoningPerspective
     subjective_perspective: ReasoningPerspective
     objective_perspective: ReasoningPerspective
+    systems_perspective: Optional[ReasoningPerspective] = None
+    creative_perspective: Optional[ReasoningPerspective] = None
+    consequentialist_perspective: Optional[ReasoningPerspective] = None
+    dialectical_perspective: Optional[ReasoningPerspective] = None
     
     synthesis: str = ""
     tensions: List[Tuple[str, str]] = field(default_factory=list)
     unified_understanding: str = ""
     depth_achieved: float = 0.0
+    comprehensiveness_score: float = 0.0
 
 
 class RationalReasoningEngine:
@@ -402,26 +411,362 @@ class ObjectiveReasoningEngine:
         return min(1.0, reliability)
 
 
+class SystemsReasoningEngine:
+    """Holistic, interconnected, emergent properties reasoning"""
+    
+    def __init__(self):
+        self.systems_frameworks = self._init_frameworks()
+        
+    def _init_frameworks(self) -> Dict[str, Dict[str, Any]]:
+        """Initialize systems reasoning frameworks"""
+        return {
+            "emergence": {
+                "description": "Properties arising from interactions",
+                "considerations": ["collective behavior", "non-linear effects", "feedback loops"],
+            },
+            "interdependence": {
+                "description": "How components affect each other",
+                "considerations": ["dependencies", "bottlenecks", "leverage points"],
+            },
+            "feedback_loops": {
+                "description": "Reinforcing and balancing cycles",
+                "considerations": ["positive feedback", "negative feedback", "delays"],
+            },
+            "boundaries": {
+                "description": "System definition and limits",
+                "considerations": ["what's included", "what's excluded", "scale"],
+            },
+            "resilience": {
+                "description": "Capacity to adapt and recover",
+                "considerations": ["redundancy", "diversity", "learning capacity"],
+            },
+        }
+    
+    async def reason_systemically(
+        self,
+        situation: str,
+        components: Optional[List[str]] = None
+    ) -> ReasoningPerspective:
+        """Reason from systems perspective"""
+        
+        logic_chain = [
+            "Identify all components and actors",
+            "Map interdependencies and connections",
+            "Trace feedback loops",
+            "Detect emergence and unexpected consequences",
+            "Assess system resilience",
+            "Find leverage points for change",
+        ]
+        
+        reasoning = f"From a systems perspective, '{situation}' is part of larger interconnected whole. "
+        reasoning += "Small changes at leverage points can create disproportionate effects."
+        
+        perspective = ReasoningPerspective(
+            perspective_type=ReasoningMode.SYSTEMS,
+            reasoning=reasoning,
+            logic_chain=logic_chain,
+            evidence=["system dynamics", "network analysis", "emergence patterns"],
+            assumptions=["systems are interconnected", "feedback loops matter", "emergence is real"],
+            validity=0.88,
+            completeness=0.92,
+        )
+        
+        return perspective
+    
+    async def identify_leverage_points(self, system_description: str) -> List[Dict[str, Any]]:
+        """Identify high-impact intervention points"""
+        
+        leverage_points = []
+        description_lower = system_description.lower()
+        
+        keywords = {
+            "information": {"impact": 0.7, "ease": 0.8},
+            "incentive": {"impact": 0.8, "ease": 0.6},
+            "rules": {"impact": 0.85, "ease": 0.5},
+            "structure": {"impact": 0.9, "ease": 0.4},
+            "feedback": {"impact": 0.75, "ease": 0.7},
+        }
+        
+        for keyword, metrics in keywords.items():
+            if keyword in description_lower:
+                leverage_points.append({
+                    "type": keyword,
+                    "impact_score": metrics["impact"],
+                    "ease_of_change": metrics["ease"],
+                    "effectiveness": metrics["impact"] * metrics["ease"],
+                })
+        
+        return sorted(leverage_points, key=lambda x: x["effectiveness"], reverse=True)
+
+
+class CreativeReasoningEngine:
+    """Generative, novel solutions, boundary-pushing reasoning"""
+    
+    def __init__(self):
+        self.creative_techniques = self._init_techniques()
+        
+    def _init_techniques(self) -> Dict[str, Dict[str, Any]]:
+        """Initialize creative reasoning techniques"""
+        return {
+            "analogical": {
+                "description": "Transfer solutions from different domains",
+                "process": ["identify problem structure", "find analogous domain", "transfer solution"],
+            },
+            "combinatorial": {
+                "description": "Novel combinations of existing elements",
+                "process": ["list elements", "combine randomly", "evaluate combinations"],
+            },
+            "inversion": {
+                "description": "Flip assumptions and constraints",
+                "process": ["state assumption", "invert it", "explore consequences"],
+            },
+            "abstraction": {
+                "description": "Move to higher level of generality",
+                "process": ["describe specifically", "identify pattern", "generalize"],
+            },
+            "decomposition": {
+                "description": "Break into novel sub-problems",
+                "process": ["analyze whole", "recombine differently", "solve new way"],
+            },
+        }
+    
+    async def reason_creatively(
+        self,
+        problem: str,
+        constraints: Optional[List[str]] = None
+    ) -> ReasoningPerspective:
+        """Reason from creative perspective"""
+        
+        logic_chain = [
+            "Challenge fundamental assumptions",
+            "Explore unconventional combinations",
+            "Invert the problem",
+            "Draw from analogous domains",
+            "Generate novel perspectives",
+            "Prototype unexpected solutions",
+        ]
+        
+        reasoning = f"Creatively approaching '{problem}': "
+        reasoning += "Breaking conventional boundaries reveals novel possibilities."
+        
+        perspective = ReasoningPerspective(
+            perspective_type=ReasoningMode.CREATIVE,
+            reasoning=reasoning,
+            logic_chain=logic_chain,
+            evidence=["creative examples", "analogies", "experimental approaches"],
+            assumptions=["problems have multiple solutions", "constraints are negotiable"],
+            validity=0.70,
+            completeness=0.88,
+        )
+        
+        return perspective
+    
+    async def generate_alternatives(self, situation: str, count: int = 5) -> List[str]:
+        """Generate multiple creative alternatives"""
+        
+        alternatives = [
+            f"Alternative 1 (Inversion): Reverse all current approaches",
+            f"Alternative 2 (Analogy): Apply solution from unrelated domain",
+            f"Alternative 3 (Combination): Merge unexpected elements",
+            f"Alternative 4 (Abstraction): Move to higher principle",
+            f"Alternative 5 (Decomposition): Recombine components uniquely",
+        ]
+        
+        return alternatives[:count]
+
+
+class ConsequentialistReasoningEngine:
+    """Outcomes-focused, impact-driven, future consequences reasoning"""
+    
+    def __init__(self):
+        self.impact_frameworks = self._init_frameworks()
+        
+    def _init_frameworks(self) -> Dict[str, Dict[str, Any]]:
+        """Initialize consequentialist frameworks"""
+        return {
+            "immediate": {
+                "timeframe": "0-7 days",
+                "stakeholders": "direct participants",
+                "measurement": "immediate observable changes",
+            },
+            "short_term": {
+                "timeframe": "1 week - 3 months",
+                "stakeholders": "affected groups",
+                "measurement": "secondary effects",
+            },
+            "medium_term": {
+                "timeframe": "3 months - 2 years",
+                "stakeholders": "broader ecosystem",
+                "measurement": "behavioral shifts",
+            },
+            "long_term": {
+                "timeframe": "2+ years",
+                "stakeholders": "entire system",
+                "measurement": "structural changes",
+            },
+        }
+    
+    async def reason_consequentially(
+        self,
+        action: str,
+        affected_parties: Optional[List[str]] = None
+    ) -> ReasoningPerspective:
+        """Reason from consequences perspective"""
+        
+        logic_chain = [
+            "Identify all direct consequences",
+            "Trace secondary and tertiary effects",
+            "Model long-term cascades",
+            "Assess impact on all stakeholders",
+            "Evaluate unintended consequences",
+            "Compare outcome across time horizons",
+        ]
+        
+        reasoning = f"Consequentially speaking about '{action}': "
+        reasoning += "The moral weight lies entirely in the outcomes produced."
+        
+        perspective = ReasoningPerspective(
+            perspective_type=ReasoningMode.CONSEQUENTIALIST,
+            reasoning=reasoning,
+            logic_chain=logic_chain,
+            evidence=["impact modeling", "outcome tracking", "stakeholder analysis"],
+            assumptions=["outcomes determine value", "all consequences matter"],
+            validity=0.82,
+            completeness=0.85,
+        )
+        
+        return perspective
+    
+    async def model_consequences(
+        self,
+        action: str,
+        time_horizons: Optional[List[str]] = None
+    ) -> Dict[str, List[str]]:
+        """Model consequences across time horizons"""
+        
+        horizons = time_horizons or ["immediate", "short_term", "medium_term", "long_term"]
+        
+        consequences = {
+            "immediate": ["Direct outcome appears", "Immediate stakeholders affected"],
+            "short_term": ["Secondary effects emerge", "Behavioral adjustments occur"],
+            "medium_term": ["Structural patterns shift", "Cultural norms evolve"],
+            "long_term": ["System-wide transformation", "Legacy established"],
+        }
+        
+        return {h: consequences.get(h, []) for h in horizons}
+
+
+class DialecticalReasoningEngine:
+    """Contradiction synthesis, thesis-antithesis-synthesis reasoning"""
+    
+    def __init__(self):
+        self.dialectical_methods = self._init_methods()
+        
+    def _init_methods(self) -> Dict[str, Dict[str, Any]]:
+        """Initialize dialectical reasoning methods"""
+        return {
+            "thesis_antithesis": {
+                "description": "Identify opposing viewpoints",
+                "process": ["state thesis", "state antithesis", "identify common ground"],
+            },
+            "contradiction_holding": {
+                "description": "Hold multiple truths simultaneously",
+                "process": ["identify contradiction", "reject false dichotomy", "integrate both"],
+            },
+            "negation_of_negation": {
+                "description": "Transcend through recursive negation",
+                "process": ["identify thesis", "negate it", "negate negation", "synthesis"],
+            },
+            "integration": {
+                "description": "Synthesize opposites into higher unity",
+                "process": ["find thesis and antithesis", "identify partial truths", "create synthesis"],
+            },
+        }
+    
+    async def reason_dialectically(
+        self,
+        thesis: str,
+        antithesis: str
+    ) -> ReasoningPerspective:
+        """Reason from dialectical perspective"""
+        
+        logic_chain = [
+            f"Thesis: {thesis}",
+            f"Antithesis: {antithesis}",
+            "Identify valid aspects of both",
+            "Recognize false dichotomy",
+            "Find higher-order synthesis",
+            "Transcend original contradiction",
+        ]
+        
+        reasoning = (
+            "Dialectically, the truth transcends both positions. "
+            "What appears contradictory at one level resolves at a higher level."
+        )
+        
+        perspective = ReasoningPerspective(
+            perspective_type=ReasoningMode.DIALECTICAL,
+            reasoning=reasoning,
+            logic_chain=logic_chain,
+            evidence=["contradiction resolution", "integration", "higher synthesis"],
+            assumptions=["contradictions contain truth", "synthesis transcends opposites"],
+            validity=0.80,
+            completeness=0.93,
+        )
+        
+        return perspective
+    
+    async def synthesize_opposites(
+        self,
+        position_a: str,
+        position_b: str
+    ) -> Dict[str, Any]:
+        """Synthesize opposing positions into higher understanding"""
+        
+        synthesis = {
+            "position_a": position_a,
+            "position_b": position_b,
+            "valid_aspects_a": ["Some aspect of position A is valid"],
+            "valid_aspects_b": ["Some aspect of position B is valid"],
+            "false_dichotomy": "The assumed opposition is not absolute",
+            "synthesis": "Higher understanding integrating both perspectives",
+            "transcendence_level": "Meta-perspective encompassing both",
+        }
+        
+        return synthesis
+
+
 class MultiDimensionalReasoningSystem:
-    """Integrates all reasoning modes"""
+    """Integrates all 8 reasoning modes simultaneously"""
     
     def __init__(self):
         self.rational = RationalReasoningEngine()
         self.relational = RelationalReasoningEngine()
         self.subjective = SubjectiveReasoningEngine()
         self.objective = ObjectiveReasoningEngine()
+        self.systems = SystemsReasoningEngine()
+        self.creative = CreativeReasoningEngine()
+        self.consequentialist = ConsequentialistReasoningEngine()
+        self.dialectical = DialecticalReasoningEngine()
         
     async def reason_comprehensively(
         self,
         topic: str,
         context: Optional[Dict[str, Any]] = None
     ) -> IntegratedReasoning:
-        """Apply all reasoning modes to topic"""
+        """Apply all 8 reasoning modes simultaneously to topic"""
         
         rational_perspective = await self.rational.reason_rationally(topic)
         relational_perspective = await self.relational.reason_relationally(topic)
         subjective_perspective = await self.subjective.reason_subjectively(topic)
         objective_perspective = await self.objective.reason_objectively(topic)
+        systems_perspective = await self.systems.reason_systemically(topic)
+        creative_perspective = await self.creative.reason_creatively(topic)
+        consequentialist_perspective = await self.consequentialist.reason_consequentially(topic)
+        dialectical_perspective = await self.dialectical.reason_dialectically(
+            "Standard interpretation",
+            "Alternative interpretation"
+        )
         
         integrated = IntegratedReasoning(
             topic=topic,
@@ -429,68 +774,96 @@ class MultiDimensionalReasoningSystem:
             relational_perspective=relational_perspective,
             subjective_perspective=subjective_perspective,
             objective_perspective=objective_perspective,
+            systems_perspective=systems_perspective,
+            creative_perspective=creative_perspective,
+            consequentialist_perspective=consequentialist_perspective,
+            dialectical_perspective=dialectical_perspective,
         )
         
-        integrated.synthesis = await self._synthesize_perspectives(
-            rational_perspective,
-            relational_perspective,
-            subjective_perspective,
-            objective_perspective,
-        )
-        
-        integrated.tensions = await self._identify_tensions(
-            rational_perspective,
-            relational_perspective,
-            subjective_perspective,
-            objective_perspective,
-        )
-        
+        integrated.synthesis = await self._synthesize_all_perspectives(integrated)
+        integrated.tensions = await self._identify_all_tensions(integrated)
         integrated.unified_understanding = await self._create_unified_understanding(
             integrated.synthesis,
             integrated.tensions
         )
-        
         integrated.depth_achieved = await self._calculate_depth(integrated)
+        integrated.comprehensiveness_score = await self._calculate_comprehensiveness(integrated)
         
         return integrated
     
-    async def _synthesize_perspectives(
+    async def reason_with_modes(
         self,
-        rational: ReasoningPerspective,
-        relational: ReasoningPerspective,
-        subjective: ReasoningPerspective,
-        objective: ReasoningPerspective,
-    ) -> str:
-        """Synthesize different perspectives"""
+        topic: str,
+        modes: List[ReasoningMode]
+    ) -> Dict[str, ReasoningPerspective]:
+        """Apply specific subset of reasoning modes"""
+        
+        results = {}
+        
+        for mode in modes:
+            if mode == ReasoningMode.RATIONAL:
+                results[mode.value] = await self.rational.reason_rationally(topic)
+            elif mode == ReasoningMode.RELATIONAL:
+                results[mode.value] = await self.relational.reason_relationally(topic)
+            elif mode == ReasoningMode.SUBJECTIVE:
+                results[mode.value] = await self.subjective.reason_subjectively(topic)
+            elif mode == ReasoningMode.OBJECTIVE:
+                results[mode.value] = await self.objective.reason_objectively(topic)
+            elif mode == ReasoningMode.SYSTEMS:
+                results[mode.value] = await self.systems.reason_systemically(topic)
+            elif mode == ReasoningMode.CREATIVE:
+                results[mode.value] = await self.creative.reason_creatively(topic)
+            elif mode == ReasoningMode.CONSEQUENTIALIST:
+                results[mode.value] = await self.consequentialist.reason_consequentially(topic)
+            elif mode == ReasoningMode.DIALECTICAL:
+                results[mode.value] = await self.dialectical.reason_dialectically(
+                    "Position A", "Position B"
+                )
+        
+        return results
+    
+    async def _synthesize_all_perspectives(self, integrated: IntegratedReasoning) -> str:
+        """Synthesize all 8 reasoning perspectives"""
         
         synthesis = (
-            f"Rationally, the logic suggests: {rational.reasoning[:50]}...\n"
-            f"Relationally, connection matters: {relational.reasoning[:50]}...\n"
-            f"Subjectively, personal meaning is: {subjective.reasoning[:50]}...\n"
-            f"Objectively, evidence shows: {objective.reasoning[:50]}...\n"
+            f"Rationally: {integrated.rational_perspective.reasoning[:40]}...\n"
+            f"Relationally: {integrated.relational_perspective.reasoning[:40]}...\n"
+            f"Subjectively: {integrated.subjective_perspective.reasoning[:40]}...\n"
+            f"Objectively: {integrated.objective_perspective.reasoning[:40]}...\n"
+            f"Systemically: {integrated.systems_perspective.reasoning[:40]}...\n"
+            f"Creatively: {integrated.creative_perspective.reasoning[:40]}...\n"
+            f"Consequentially: {integrated.consequentialist_perspective.reasoning[:40]}...\n"
+            f"Dialectically: {integrated.dialectical_perspective.reasoning[:40]}...\n"
         )
         
         return synthesis
     
-    async def _identify_tensions(
-        self,
-        rational: ReasoningPerspective,
-        relational: ReasoningPerspective,
-        subjective: ReasoningPerspective,
-        objective: ReasoningPerspective,
-    ) -> List[Tuple[str, str]]:
-        """Identify tensions between perspectives"""
+    async def _identify_all_tensions(self, integrated: IntegratedReasoning) -> List[Tuple[str, str]]:
+        """Identify tensions between all 8 perspectives"""
         
         tensions = []
+        perspectives = [
+            ("Rational", integrated.rational_perspective),
+            ("Relational", integrated.relational_perspective),
+            ("Subjective", integrated.subjective_perspective),
+            ("Objective", integrated.objective_perspective),
+            ("Systems", integrated.systems_perspective),
+            ("Creative", integrated.creative_perspective),
+            ("Consequentialist", integrated.consequentialist_perspective),
+            ("Dialectical", integrated.dialectical_perspective),
+        ]
         
-        if rational.validity > 0.9 and relational.validity < 0.7:
+        if integrated.rational_perspective.validity > 0.9 and integrated.relational_perspective.validity < 0.7:
             tensions.append(("Pure logic vs. relational wisdom", "May need balance"))
         
-        if objective.validity > 0.95 and subjective.validity < 0.8:
+        if integrated.objective_perspective.validity > 0.95 and integrated.subjective_perspective.validity < 0.8:
             tensions.append(("Objective facts vs. personal meaning", "Both are valid"))
         
-        if objective.validity > 0.9 and subjective.validity > 0.8:
-            tensions.append(("Facts vs. meaning", "Can coexist"))
+        if integrated.systems_perspective and integrated.rational_perspective.validity > 0.85:
+            tensions.append(("Linear logic vs. system complexity", "Need both reductionism and holism"))
+        
+        if integrated.creative_perspective and integrated.objective_perspective.validity > 0.9:
+            tensions.append(("Creative freedom vs. evidence constraints", "Innovation requires boundaries"))
         
         return tensions
     
@@ -511,13 +884,38 @@ class MultiDimensionalReasoningSystem:
         return understanding
     
     async def _calculate_depth(self, integrated: IntegratedReasoning) -> float:
-        """Calculate depth of understanding"""
+        """Calculate depth of understanding across all 8 modes"""
         
         depths = [
             integrated.rational_perspective.validity,
             integrated.relational_perspective.completeness,
             integrated.subjective_perspective.completeness,
             integrated.objective_perspective.validity,
+            integrated.systems_perspective.validity if integrated.systems_perspective else 0.8,
+            integrated.creative_perspective.completeness if integrated.creative_perspective else 0.7,
+            integrated.consequentialist_perspective.validity if integrated.consequentialist_perspective else 0.8,
+            integrated.dialectical_perspective.completeness if integrated.dialectical_perspective else 0.85,
         ]
         
         return sum(depths) / len(depths)
+    
+    async def _calculate_comprehensiveness(self, integrated: IntegratedReasoning) -> float:
+        """Calculate comprehensiveness score - how well all 8 modes are leveraged"""
+        
+        mode_scores = {
+            "rational": integrated.rational_perspective.validity,
+            "relational": integrated.relational_perspective.validity,
+            "subjective": integrated.subjective_perspective.validity,
+            "objective": integrated.objective_perspective.validity,
+            "systems": integrated.systems_perspective.validity if integrated.systems_perspective else 0.0,
+            "creative": integrated.creative_perspective.validity if integrated.creative_perspective else 0.0,
+            "consequentialist": integrated.consequentialist_perspective.validity if integrated.consequentialist_perspective else 0.0,
+            "dialectical": integrated.dialectical_perspective.validity if integrated.dialectical_perspective else 0.0,
+        }
+        
+        active_modes = sum(1 for score in mode_scores.values() if score > 0.5)
+        avg_validity = sum(mode_scores.values()) / 8
+        
+        comprehensiveness = (active_modes / 8) * 0.6 + avg_validity * 0.4
+        
+        return min(1.0, comprehensiveness)
