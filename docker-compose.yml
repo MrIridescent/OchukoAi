@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.backend
-    container_name: jarvis-backend
+    container_name: ochuko-ai-backend
     ports:
       - "8000:8000"
     environment:
@@ -20,7 +20,7 @@ services:
       - postgres
       - redis
     networks:
-      - jarvis-network
+      - ochukoai-network
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
       interval: 30s
@@ -32,7 +32,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: jarvis-frontend
+    container_name: ochuko-ai-frontend
     ports:
       - "3000:3000"
     environment:
@@ -43,19 +43,19 @@ services:
     depends_on:
       - backend
     networks:
-      - jarvis-network
+      - ochukoai-network
 
   postgres:
     image: postgres:16-alpine
-    container_name: jarvis-postgres
+    container_name: ochuko-ai-postgres
     environment:
       - POSTGRES_USER=${POSTGRES_USER:-postgres}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
-      - POSTGRES_DB=${POSTGRES_DB:-jarvis}
+      - POSTGRES_DB=${POSTGRES_DB:-ochuko_ai}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
-      - jarvis-network
+      - ochukoai-network
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
@@ -64,13 +64,13 @@ services:
 
   redis:
     image: redis:7-alpine
-    container_name: jarvis-redis
+    container_name: ochuko-ai-redis
     ports:
       - "6379:6379"
     volumes:
       - redis_data:/data
     networks:
-      - jarvis-network
+      - ochukoai-network
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
@@ -79,15 +79,15 @@ services:
 
   mongodb:
     image: mongo:7
-    container_name: jarvis-mongodb
+    container_name: ochuko-ai-mongodb
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER:-admin}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD:-password}
-      - MONGO_INITDB_DATABASE=jarvis
+      - MONGO_INITDB_DATABASE=ochuko_ai
     volumes:
       - mongodb_data:/data/db
     networks:
-      - jarvis-network
+      - ochukoai-network
     healthcheck:
       test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
       interval: 10s
@@ -100,5 +100,5 @@ volumes:
   mongodb_data:
 
 networks:
-  jarvis-network:
+  ochukoai-network:
     driver: bridge

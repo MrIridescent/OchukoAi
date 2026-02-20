@@ -1,7 +1,7 @@
 {
-  "name": "jarvis-frontend",
+  "name": "ochuko-ai-frontend",
   "version": "1.0.0",
-  "description": "JARVIS AI Assistant - React Frontend",
+  "description": "Ochuko AI - Advanced AI Assistant Frontend (Inspired by JARVIS)",
   "type": "module",
   "scripts": {
     "dev": "vite",

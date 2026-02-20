@@ -1,6 +1,7 @@
 """
-Face Recognition Engine - Identify users and emotional states
-Uses deep learning models for accurate face detection and recognition
+Ochuko AI - Face Recognition Engine
+Identify users and emotional states using deep learning models
+Part of the comprehensive sensing system (inspired by JARVIS capabilities)
 """
 
 import logging

@@ -1,0 +1,39 @@
+{
+  "timestamp": "2026-02-20T18:14:18.769539",
+  "systems": {
+    "reasoning": {
+      "tests_passed": 4,
+      "tests_total": 4,
+      "status": "PASS"
+    },
+    "emotional_intelligence": {
+      "status": "FAIL"
+    },
+    "perception": {
+      "tests_passed": 0,
+      "status": "PARTIAL"
+    },
+    "communication": {
+      "status": "FAIL"
+    },
+    "unified_cognition": {
+      "status": "FAIL"
+    },
+    "memory": {
+      "status": "PARTIAL"
+    }
+  },
+  "integration_tests": {
+    "mcp": {
+      "status": "PASS"
+    },
+    "crewai": {
+      "status": "PASS"
+    },
+    "complete": {
+      "status": "FAIL"
+    }
+  },
+  "performance": {},
+  "overall_status": "LIMITED_OPERATIONAL"
+}

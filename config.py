@@ -1,6 +1,7 @@
 """
-Backend Configuration Module
+Ochuko AI - Backend Configuration Module
 Loads and manages environment variables and application settings
+Inspired by JARVIS from Iron Man
 """
 
 import os

@@ -1,13 +1,13 @@
-# 🚀 Quick Start Guide - JARVIS AI Assistant
+# 🚀 Quick Start Guide - Ochuko AI
 
-Get JARVIS up and running in **5 minutes** with Docker.
+Get Ochuko AI (inspired by JARVIS) up and running in **5 minutes** with Docker.
 
 ## One-Command Setup
 
 ```bash
 # 1. Clone and setup
-git clone https://github.com/yourusername/jarvis-ai-assistant.git
-cd jarvis-ai-assistant
+git clone https://github.com/yourusername/Ochuko AI.git
+cd Ochuko AI
 
 # 2. Copy environment file and add your API keys
 cp .env.example .env
@@ -28,7 +28,7 @@ docker-compose up -d
 
 | Service | URL | Purpose |
 |---------|-----|---------|
-| **JARVIS Frontend** | http://localhost:3000 | Chat interface & UI |
+| **Ochuko AI Frontend** | http://localhost:3000 | Chat interface & UI |
 | **API Server** | http://localhost:8000 | FastAPI backend |
 | **API Docs** | http://localhost:8000/docs | Interactive documentation |
 | **Database** | postgres:5432 | PostgreSQL data store |
@@ -37,7 +37,7 @@ docker-compose up -d
 
 ---
 
-## First Time Using JARVIS?
+## First Time Using Ochuko AI?
 
 ### Try These Commands
 
@@ -61,10 +61,10 @@ docker-compose ps
 # Health check
 curl http://localhost:8000/health
 
-# Chat with JARVIS (via REST)
+# Chat with Ochuko AI (via REST)
 curl -X POST http://localhost:8000/api/process-text \
   -H "Content-Type: application/json" \
-  -d '{"text": "Hello JARVIS!", "context": "greeting"}'
+  -d '{"text": "Hello Ochuko AI!", "context": "greeting"}'
 
 # View API documentation
 open http://localhost:8000/docs

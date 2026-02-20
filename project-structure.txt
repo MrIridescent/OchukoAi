@@ -1,4 +1,4 @@
-jarvis-ai-assistant/
+UniversalAI_Assist/
 ├── backend/
 │   ├── src/
 │   │   ├── __init__.py

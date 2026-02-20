@@ -1,6 +1,6 @@
 """
 React Component: Chat Interface
-Main UI for interacting with JARVIS
+Main UI for interacting with UniversalAI_Assist
 Handles text, voice, and real-time communication
 """
 
@@ -126,7 +126,7 @@ export const ChatInterface: React.FC = () => {
   return (
     <div className="chat-interface">
       <div className="chat-header">
-        <h1>🤖 JARVIS</h1>
+        <h1>🤖 UniversalAI_Assist</h1>
         <div className="status-indicator" data-status={status}>
           {status === 'connected' ? '🟢 Online' : '🔴 Offline'}
         </div>
@@ -135,8 +135,8 @@ export const ChatInterface: React.FC = () => {
       <div className="messages-container">
         {messages.length === 0 && (
           <div className="welcome-message">
-            <h2>Welcome to JARVIS</h2>
-            <p>Your advanced AI assistant</p>
+            <h2>Welcome to UniversalAI_Assist</h2>
+            <p>Your universal AI assistant inspired by JARVIS</p>
             <p>Ask me anything or give me commands...</p>
           </div>
         )}
@@ -147,7 +147,7 @@ export const ChatInterface: React.FC = () => {
             className={`message ${message.role === 'user' ? 'user-message' : 'assistant-message'}`}
           >
             <div className="message-header">
-              <span className="role">{message.role === 'user' ? '👤 You' : '🤖 JARVIS'}</span>
+              <span className="role">{message.role === 'user' ? '👤 You' : '🤖 UniversalAI_Assist'}</span>
               <span className="timestamp">
                 {message.timestamp.toLocaleTimeString()}
               </span>

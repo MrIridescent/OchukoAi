@@ -1,5 +1,6 @@
 """
-AI Orchestrator - Central brain coordinating all AI systems
+Ochuko AI - AI Orchestrator
+Central brain coordinating all AI systems (inspired by JARVIS)
 Manages LLM, vision, reasoning, and task execution
 """
 
@@ -15,7 +16,8 @@ logger = logging.getLogger(__name__)
 
 class AIOrchestrator:
     """
-    Main AI brain that orchestrates all AI subsystems.
+    Main AI brain that orchestrates all AI subsystems (Core Intelligence Engine).
+    Like JARVIS in Iron Man, this is the central decision-making system.
     Handles reasoning, decision-making, and task execution.
     """
     
@@ -23,6 +25,12 @@ class AIOrchestrator:
         self.llm_engine = None
         self.vision_engine = None
         self.task_executor = None
+        self.speech_engine = None
+        self.perception_engine = None
+        self.precognitive_engine = None
+        self.empathy_engine = None
+        self.task_assistant = None
+        self.messaging_engine = None
         self.memory = {}
         self.is_ready = False
         self.thinking_enabled = True
@@ -30,18 +38,43 @@ class AIOrchestrator:
     
     async def initialize(self):
         """Initialize all AI engines asynchronously"""
-        logger.info("Initializing AI Orchestrator...")
+        logger.info("Initializing AI Orchestrator (Central Brain)...")
         
+        # Core engines
         self.llm_engine = LLMEngine()
         self.vision_engine = VisionEngine()
         self.task_executor = TaskExecutor()
+        self.speech_engine = SpeechEngine()
         
+        # Advanced perception and intelligence engines
+        from advanced_perception import AdvancedPerceptionEngine
+        from precognitive_engine import PreCognitiveEngine
+        from empathy_engine import EmpathyEngine
+        from life_task_assistant import LifeTaskAssistant
+        from messaging_integration import MessagingIntegrationEngine
+        
+        self.perception_engine = AdvancedPerceptionEngine()
+        self.precognitive_engine = PreCognitiveEngine()
+        self.empathy_engine = EmpathyEngine()
+        self.task_assistant = LifeTaskAssistant()
+        self.messaging_engine = MessagingIntegrationEngine()
+        
+        # Initialize all engines
         await self.llm_engine.initialize()
         await self.vision_engine.initialize()
         await self.task_executor.initialize()
+        await self.perception_engine.initialize()
+        await self.precognitive_engine.initialize()
+        await self.empathy_engine.initialize()
+        await self.task_assistant.initialize()
+        await self.messaging_engine.initialize()
         
         self.is_ready = True
-        logger.info("✅ AI Orchestrator initialized")
+        logger.info("✅ AI Orchestrator fully initialized - All systems online!")
+        logger.info("✅ Pre-cognitive intelligence active")
+        logger.info("✅ Empathy engine active")
+        logger.info("✅ Life task assistant ready")
+        logger.info("✅ Multi-channel messaging enabled")
     
     async def process_text(
         self,
@@ -268,13 +301,14 @@ class LLMEngine:
         """Generate response using LLM"""
         
         system_prompt = f"""
-        You are JARVIS, an advanced AI assistant inspired by Iron Man's AI.
-        You are:
-        - Intelligent and witty
-        - Professional yet personable
-        - Capable of handling complex tasks
-        - Always respectful and helpful
-        - Proactive in offering assistance
+        You are Ochuko AI, an advanced AI assistant inspired by JARVIS from Iron Man.
+        You embody the capabilities and sophistication of JARVIS:
+        - Intelligent, witty, and adaptable
+        - Professional yet personable in your interactions
+        - Capable of handling complex tasks across any domain
+        - Always respectful, helpful, and transparent
+        - Proactive in offering assistance and solutions
+        - Universal problem-solver: ready to assist with anything the user needs
         
         Intent: {intent}
         {f'Your thinking: {thinking}' if thinking else ''}
@@ -352,3 +386,23 @@ class TaskExecutor:
             "result": f"Action {action} executed",
             "timestamp": datetime.now().isoformat()
         }
+
+
+class SpeechEngine:
+    """Handle speech-to-text and text-to-speech"""
+    
+    def __init__(self):
+        self.is_ready = False
+    
+    async def initialize(self):
+        """Initialize speech engine"""
+        logger.info("Speech Engine initialized")
+        self.is_ready = True
+    
+    async def speech_to_text(self, audio_bytes: bytes) -> str:
+        """Convert speech to text"""
+        return "Transcribed text would go here"
+    
+    async def text_to_speech(self, text: str) -> bytes:
+        """Convert text to speech"""
+        return b"Audio bytes would go here"
