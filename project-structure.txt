@@ -1,0 +1,59 @@
+jarvis-ai-assistant/
+├── backend/
+│   ├── src/
+│   │   ├── __init__.py
+│   │   ├── main.py
+│   │   ├── config.py
+│   │   ├── api/
+│   │   │   ├── __init__.py
+│   │   │   ├── routes.py
+│   │   │   └── websocket.py
+│   │   ├── ai/
+│   │   │   ├── __init__.py
+│   │   │   ├── orchestrator.py
+│   │   │   ├── llm_engine.py
+│   │   │   ├── vision_engine.py
+│   │   │   ├── speech_engine.py
+│   │   │   └── memory.py
+│   │   ├── modules/
+│   │   │   ├── __init__.py
+│   │   │   ├── face_recognition.py
+│   │   │   ├── emotional_intelligence.py
+│   │   │   ├── task_executor.py
+│   │   │   └── context_manager.py
+│   │   └── utils/
+│   │       ├── __init__.py
+│   │       ├── logger.py
+│   │       └── helpers.py
+│   ├── requirements.txt
+│   ├── Dockerfile
+│   └── .env.example
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── VoiceInput.tsx
+│   │   │   ├── FaceRecognition.tsx
+│   │   │   ├── ChatInterface.tsx
+│   │   │   ├── Dashboard.tsx
+│   │   │   └── TaskManager.tsx
+│   │   ├── pages/
+│   │   │   ├── Home.tsx
+│   │   │   ├── Settings.tsx
+│   │   │   └── Analytics.tsx
+│   │   ├── services/
+│   │   │   ├── api.ts
+│   │   │   ├── websocket.ts
+│   │   │   └── audio.ts
+│   │   ├── store/
+│   │   │   └── context.tsx
+│   │   ├── types/
+│   │   │   └── index.ts
+│   │   ├── App.tsx
+│   │   └── index.tsx
+│   ├── package.json
+│   ├── tsconfig.json
+│   ├── vite.config.ts
+│   └── Dockerfile
+├── docker-compose.yml
+├── README.md
+└── .gitignore
